@@ -17,7 +17,7 @@ const auth = require("./middleware/authentication");
 app.use(express.json());
 
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/job", auth, jobRoutes);
+app.use("/api/v1/jobs", auth, jobRoutes);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
