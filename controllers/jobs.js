@@ -28,18 +28,18 @@ const createJob = async (req, res) => {
 
 const updateJob = async (req, res) => {
   const {
-    body: { status },
+    body: { company, position },
     params: { id: jobId },
     user: { userId },
   } = req;
 
-  if (status === "") {
-    throw new BadRequestError("Status cannot be empty");
+  if (company === "" || position === "") {
+    throw new BadRequestError("Company and position cannot be empty");
   }
 
   const job = await Job.findOneAndUpdate(
     { _id: jobId, createdBy: userId },
-    { status },
+    body,
     { new: true, runValidators: true }
   );
 
